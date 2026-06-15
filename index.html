@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <!-- We only include this to explicitly loosen the CSP of various packager environments. It does not provide any security. -->
   <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: blob:">
-  <title>Multitouch</title>
+  <title>MultitouchV2</title>
   <style>
     body {
       color: #ffffff;
@@ -162,7 +162,7 @@
     <noscript>Enable JavaScript</noscript>
     
     
-    
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="loading-inner"></div></div>
   </div>
 
   <div id="error" class="screen" hidden>
@@ -228,7 +228,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
       const scaffolding = new Scaffolding.Scaffolding();
       scaffolding.width = 480;
       scaffolding.height = 360;
-      scaffolding.resizeMode = "dynamic-resize";
+      scaffolding.resizeMode = "preserve-ratio";
       scaffolding.editableLists = false;
       scaffolding.usePackagedRuntime = true;
       scaffolding.setup();
@@ -249,14 +249,14 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
       scaffolding.setAccentColor("#ff4c4c");
 
       try {
-        scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider(["wss://clouddata.turbowarp.org","wss://clouddata.turbowarp.xyz"], "p4-@Multitouch.sb3"));
+        scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider(["wss://clouddata.turbowarp.org","wss://clouddata.turbowarp.xyz"], "p4-@MultitouchV2.sb3"));
       } catch (error) {
         console.error(error);
       }
 
       vm.setTurboMode(false);
       if (vm.setInterpolation) vm.setInterpolation(false);
-      if (vm.setFramerate) vm.setFramerate(60);
+      if (vm.setFramerate) vm.setFramerate(30);
       if (vm.renderer.setUseHighQualityRender) vm.renderer.setUseHighQualityRender(false);
       if (vm.setRuntimeOptions) vm.setRuntimeOptions({
         fencing: true,
@@ -308,7 +308,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
           ), true);
         }
       };
-      let projectDecodeBuffer = new ArrayBuffer(3152);
+      let projectDecodeBuffer = new ArrayBuffer(2052);
       let projectDecodeIndex = 0;
       const decodeChunk = (size) => {
         try {
@@ -316,12 +316,12 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
           base85decode(document.currentScript.getAttribute("data"), projectDecodeBuffer, projectDecodeIndex);
           document.currentScript.remove();
           projectDecodeIndex += size;
-          setProgress(interpolate(0.1, 0.75, projectDecodeIndex / 3150));
+          setProgress(interpolate(0.1, 0.75, projectDecodeIndex / 2050));
         } catch (e) {
           handleError(e);
         }
       };
-      </script><script data="wC_B+4****2****-+Fkh}YMW,{-Z.66rA+*b*DlNwLKzIUF*2O/rCsF@NqMeHP{O:OG{7H3AJdMn2USZistdt^SM)=5z5]BM\nh5LtXYS;maJygJuiBcQjVJwTq{6CQ=+wSg,6]JUEWc)lf;d-PaNUt[VB6KRI?AxGuu3j32fExsPU(2SStZU(\;Q_0UmRx*@O=Vsc5|34N|z]tWRosTqGJu0/RX:IMkBiGA\mvJzR{MdhLt@d~-Q4AJ[6o}F(N}@}rj=cV.A1ZM}qW3)F3BL9Kq{GgT)c}\qSs68FRluyiN9m.hQNXI:uP1lLtsN}MH7u*3)v;916lR_XTeCuMKL@zNMoIcaB1lUTPkc]ssI16-Xg)j8[v8v0oTDAVD`;oF/OS.B9e)08tf=xwlz^qk+Gu+yhay[;4R8NS*J}4?w-aDJHAoTpE0pgdJr65c9cfd|U[DA`c0|tEKg`7|uKJaZ;}_,Orux?*(AwY)phRFA3V6ytfY;CV29@@@BCbG3AtLVSO~UwmPr?4[cu;`E-1or:d)cXtt-=;h1\@O.?7S,9d)J{?wxOb\)p4+qkSd+Z+nIV3)/46Ls-^40fVo{6OJ07-:7xJO5HVmJ]Xw*/KKzssR;8f;BSAITS5EFc4k8b8ct-krYAQ}QbmGH4j.282`],[LT=UdJvUYQ-)PQ}RIat5t/\.DbN]T\U@ep?52x+F,-[tWj,zulq/+IRvj0i(FxVa1fYh[~`5_?vlZb^X:D0k`iys2jWdaCXj[VL7)zjrA\eWX9YmNNQIBJrzT8p]dQC*CSU7YWN`^:|638W[oK@Q[sOsIZ01_~0ne-NAwEDxv05s+6f~wnl67VbXu{szin6susbp;~G9hhIL942*h[?U38qa?7A];TMKUjov=pih21SZjP=Tyg}Ev(6`\(Nz5wI@|HAxX.uy@\B:.S+)`ooOxw^hm9W4lRhS)}Yv{RG6o\P(9nXvJ8oZmsMo3p{cR7qK@JfFHn/E?s|i@Q|M4-@NJ@j1`T=-2}Um~gOW:n?HES,A;gSXwp326K[w;k}BbT27*tYFCwoWXTM;PfLl3N@*:PCW6qRcTL2m;,HcS+f)KhQN@q=03]-X:+A|gcvr:mn`YOZ4}af7jlGfQ7]a4@9E)Tfnz|W8j_]vr+`=Vqj8TAcJK\McvK;g(rp/a8fd*t{ndPSQ8\+2w*3/x+1za7yX9}:.Ng}F_BxO.wgU[v8MFAjT1I:3ri;5MLk;]Q|i84*}510M{A,O;(AXwu+(UbR\Gjoj_cVmiZ*K|e]^+_Qhag773is@OCj8BLf_T~Z96TRIa^GBq/HFXcSt:p[vWm1/}j+nHl@W0R@=?1Xc(XdOoa\h[|Vp+El(zdA9h-CE^Ga@)}\oySUm:=arA=t{Jh~BrwR31~T`65I_1]pFuJpTP}^/i6^Q-k}6tV(Y=_f:-i[VTow\,^hdyMdeEg-5FoRO1k}zId`ZLfXx.3{ZOjz\t+Hpi\,psvi6:)=s@w790oiWi4FVjkT~yaGUJ5`I`~zW3EwzK[u/dne(fIpm?{U^,l/*B=3wAv[,z5VS;*-lxsfHJHAd}M?)LpO-K*Lz4p=+A`8]hHngTB1[[cK_WgRNbp07?(s3Bg]|@t}U,k11Ng;?G[Zz.z:IEFyA*TVsMu-iHydH3,fUi-r?}ME6R4?).s~+V7G0*cmP:v[VL:Hl|n2_ok[WL6VtVsF0oMSs0JyZ8,,66AXO~kyCnlu8H;IzTagb([49i4wRkT;4P)fC\spqO/KGE)ldeatBH2ZcbbG4v:n+3`bRrU.j.iH]^v9R;2fGin+Iyvo|P.JKmRy{SbQwtiOoyYFUI_}/d)L3;hltSvd0HYOkbduzAwTTysZ75GAZBuJh)rPhKo\:(~jLsfk+3RM5:=\P2K:5vfCxCHZe`x8?kg*nV;HMOPg{swZz{O?=pzY/\-N-LJYe}QCUp-Ccu*@PH:ZkeOnhQ9Aev}5_F05xH9yJ/b~ta4ZHA,A/9ISW]Sx^uw4l?1+Q+2_2)O(X6zCGUS?Ta@)9/?pCAqSM_a87fpidOOZbK1RT319tv+Z)-.iFe9n}c*9}wki+6.@:`9Aekto9ijzb0OHw5*Kky9C;18k+ZOhI@`P~PebVoRS2OGyeKeRd5bNB3bjU*6l5E)Flx88~7zOTc09aI@C03N4E9u9JQO4t_Q]AgSb;U?*I5*i^;R}djA3h5zZIY:XQ9/Zy1VwtvA2k9iOe]ufPLi,aI`/MLQJi)P\D(vGGx{|;WRtCCf@Xd@=qSKtYZuRZ@k3c3mL,*h];7M_sbZ|4MeDDKs;A+B(8h\,)Ht`H[w`RTi`t;yj3n{=wS6odLHQ:6Od4|]8xz|upGqX~Jw77uNZPjZN=oLH`C4+_eKMXW6j6mv7-nxDQWi,lP(V=x[htKoLlFo*kTJ05D1}Dy,yvC6,XZLutzVx?X*^E6]gvTb2GFH;11Kz+RC8D8p)hXFWwunmGiEbuTy7|Ub=xe7@?2nLOO9l+hFEyEdsTi`VJB,gx`J)z[({{\(bD/1[gcm5+Vl)j:\UjVfod~RsEEIk|G9}c32:*p(_Qm45{WkeO335gxi]u(+5B,|5/wC_B+4****2****tM)JlyNd9*JBY?*NXq-*G]P@JIdCo9}Y/2;YYm@J6sO::Hdgk:3HIzIa\Z4(au^+OmW=uB|7:P4v4=UV0mE*irjJD^QWBI0Wuv7E-}a/mz+r`ZSD/)[8BA\**wlCxdTA66umycF|Zl:;|GZ-nU;C]w))pibg\*GkX5+qTl4GYTWng[OS?|0^4PAoLNP_nj^mG7|y|j]LKeUi-~5c{1`x8?+o|]fM3HyGCo6Bp@MsCy=l(D,SL(SS10Y]wRsP~.+8H***2B***S=6Q;LCM1]kwyVuNoRZ5apWc;][qtI^Zdl:}.yYI7Q6n;}|2Y9WLD)IbvOn;JI5r8)-n7Mitx3TN}JeH;lzg[03\}ryTzU[gOTjYw{_^C/NRb0e`F(UGS:q^?.Oa67TxCjI}UN;4;WLk,zzGHg4}~fmVlICIG8tRw+g,:F\5poGP(jD3KUlokd)J\xm~R7jg6kWH@3FxZV0P:c^.D/3=aL(UmY2f?cDQYUe-mm=`ALj(s]SxlFSU+8qkj:i@}=bx18y=AH31nzP~.+8H***2B***f);ZAslgo+LVh)kOoRZ5_^v,;Q-zk:},RS95A-?I*@(/(*x=/(/REN;z)3o9PQSw8)-n7MMJsYT_*9FbLIS2VRBZh81{gD3mf.]bJ?UDF[r:8[hSK]h:-2cC5jIQ(`S[yxMLet0_p9]a^=na+5+Kv22rL0m{3?rL)w*9KXgFZpnP7D{?HHuARR~xFSrCj4eGhhCJ`nCzc;X:99CGogt;GIduZ`E15}{vD-3Z3h8G}Eo}[Fl+ri471.dKN_:a^swKDP/uq0QKDh1Y@*I3?0]||{lELI5+\(BZ.LFL]9c3z||(LMDz`W}O?-o^8/@):O[-\+|AY]K*+Y|l=VN)h{=6R9~3pJU|bCsj-W=i1(C*^6cQeb=YmwYO1HsOAL=Y4P/aENnkQC]Po3/szk`*Hf/+*2Zr**r-OtDN8C{^iA***{E+**6*******************b*DlNwLKzIUF*2ONVT;BAS5,*4****2****tM)JlyNd9*JBY?*NXq-****************)B***UB*o9~+Q;JId1o9l[PwJx^C5:y03Y98}vVJ\{T)ITGS?Kszk`*Hf/+*2Zr**r-OtD99cKxs+***k,***N**************ijYr,Dpg/(]dO4(VmtS9Y2MCIb)Pi;zSik:4QvvJ0,Tl:4@]+ONAT;BAS5,*4****2****kbV+GoRxE*LQ}Z*NXq-****************JG***R0z5:,:*Y9Y{/K(SHE5:*+E::1,GJ(*7`U:SD[[JTGS?K{aRy+*****2BN**[-***=K********">decodeChunk(3150)</script>
+      </script><script data="wC_B+4****2****v`wwQ];_W+l(I2/6rA+*b*DlNwLKzIUF*2O-`b(F^7`_;lWBb+VLEaW3KE/LLK5Rqz@]_\cBC\,9ffcBGq.=72DI)|vCt6iel~Y@T.n^/P/Z](,4XUuHdpJFE1Ln:*VL8`0339/Io9a43bYf,;)9G26vLEi)CW|uYKTt1]nG/bu{@tVq:cAf?/PtsY}JqrZ9)F*+m.JEfe*ox.ePz9D?9Wo-*5|W~VEtbP6*XTZ{oQe*L74BKLSIT0`Hpam)sskOHIw=O-)kd5Yq_A-Ga=,omGe?qH0Ou-}|xLsPibEJB,4rUeJXKag;(sPE0AJ@f{YYASB,5kfv=y,IxoDJ=dh1bWZP1q{W09:JrjW/:;SMek`bD25o{1?OwZK}b\4?v{,*r8tK`dQ{7l9;Ar(UJH0qf.i[Dy0Wb+435zburIYQ/Gbm0k*z?MjTfReLiB)zqf[-ls.,-oHip.eQ\K1~.xrR(1gvO|W4l15E-9c?\=i9,RGKz(DKncBS0~?Ub~F=lE309t?E)M41^DGFH:0pr\[G/hVygyn0o()tAF`dm/z37o*DcXm)3dlA*p2FX:JqFV8rX1Y]s\m{`08aN1}Xd@44.ZmU5,B:.*aPmbex,ir{l51i\}b1g2~KZlClz4KvIMLl:(9iUzha9Ocg@WAEL*z)h7F60ZIXRY)5X1:V:PXV9u;ZgGYSon^moc7C=7_@vkx8|j.TSdExlP9J0)r:Po1gOlN97f5B)*Mly,87S,=cUN7aVWzb~(D].\v3dOe^FFHnb,f_cG]2C0iZdQ63k97tNMuXnNP`M:mhlBH?b;lwwV?YG}B/JN(cW@vza8DOOlq[(~0892[+x0uvT0*8(ja|`47vmK,ATkV1A7~ii._c3iiEBeF1F3i|aK(kZ0IY4*-[{b]U-j0puvMnJdmJZ=x=?cey0NcU*91Y\VAt\zZdsBD;DWDw-}4]MaGY)a/L\zjft__*P0DkquPKlb?oKLD5O{Vy,sj1Iue`w9ER9q:3^|A3k=fRnrvu}*iq55BFI3alsK[g+;rh/QuP`uq\-+DDt^1wF-Gy9zOhW`p`sSpGKjZQQ1rAX,uv^ep3E,O?M9yx7|1RpEumD(~\DKCq=tfLr_wHLGP7wivvbN0,O;7b\;_*{A+m{t_u~N18qgF-T[6mLE@gxToQBNgBCq(FQQ9T}BMp}L3ma\yyRr*6GU?fK9/E?)yrO7XRDAd]w;9j+U9EobVZ;{@^c4UddzW}SNv\|DR,t{9txblW.Jz:+Rb(]un,|_a\)BelVn9cR|5Mt~Qsn4+4j3*NeREN\*N`e9//[E(2LoKKnJu+QV[Y0bG?ZU{@ji`vcabrK7u*65K?`.jk?*INa8.LHy0N?`f`a5T8GQ[C.`I4/SyZu?h4Y7@?d,nTG?I2Lw[nJ(PvJ8].Kt)H8g+Sf_zdzFeYHT}Xrq~twYIrep9U@qAd9H7Hz;Ze:B]kyrC2sZY{NC\n_5uAu]^,yR19xDAG:[\d{d}Zwr5\@HK)]BcwznTOPXz/SQ+Ee-VMQCVAOjZzWR0v^d:3RghUuQ5dW|Dviz_Gr6jd,D0t/v]ELT12wuoP;B;r/+*2Zr**r-OtD=Y3G*h+***J,***N****UB*o9~+Q;JId1o9l[PwJx^C5:y03Y98}vVJ\{T)ITGS?K)WT\.iuChpjUH1e.k=y:}C.SCbAo*B4BB{gZc+Joz^ntJ*6Vo2l7)(0aB?O?x1MgN[mxw0VFuebwl]O[`G4g4=Nf}SO/Q@(KH=^K45o@7`}H()y=BCkI7T/A-3w+\T4iIc\7ZEfUX3=yW6E(xr5vp3;H~pORNJn+XFve{3:9frdF_sHsk/dyE~YfC1Q^(-2rXZ,tre2]ak?Eu/A3**L@:**NA+**uME/(.S~;JPZ`i;ZiX::*{T)I*=3Y90{])IvS9)IRBx/P/tm`A]lA;/,7`OE`H_uXua_95dZW]OR23uu6@.nNo^4qfB])`zc9+,B{C?g8aD.32.l?U75`^jMARV[yyTDIky]|K_xw-3i6QvL)8/|z2F61P0=jH^glB~xhDiR]m.oL{BnuR}kC3v_M9Jk+j;t2,`a9,;c4+LxiX_(Gy{eWk5Tot7^N{\vU:9\Uja6wExwToj+[YChF@`m9{8cnZS5M9RVk-OFM\bZai6.eJrGLb[Xy;QXUZn)UqL*5qm1,\cv5c~oiA.Au6o.Jd@0/z2tu8CNmL\V2x|F5k?6F};FxCZ6y8hGIj?~,?9^QPN{rolQaE6+;Zj8Q;BAS5,*4****2****v`wwQ];_W+l(I2/6rA+*********************(6e;L@]1y8;]|SMszk`*Hf/+*2Zr**r-OtD=Y3G*h+***J,***N**************vW2\+G]P@JIdCo9}Y/2;YYm@J6sO::Hdgk:3HIzIa\Z4(au^+ONAT;BAS5,*4****2****kbV+GoRxE*LQ}Z*NXq-****************L;***R0z5:,:*Y9Y{/K(SHE5:*+E::1,GJ(*7`U:SD[[JTGS?K{aRy+*****0(E**^,***??********">decodeChunk(2050)</script>
 
     <script>
       const getProjectData = (function() {
@@ -353,7 +353,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
         return () => (() => {
         const buffer = projectDecodeBuffer;
         projectDecodeBuffer = null; // Allow GC
-        return Promise.resolve(new Uint8Array(buffer, 0, 3150));
+        return Promise.resolve(new Uint8Array(buffer, 0, 2050));
       })().then(async (data) => {
           zip = await Scaffolding.JSZip.loadAsync(data);
           const file = findFileInZip('project.json');
@@ -370,7 +370,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
       await scaffolding.loadProject(projectData);
       setProgress(1);
       loadingScreen.hidden = true;
-      if (true) {
+      if (false) {
         scaffolding.start();
       } else {
         launchScreen.hidden = false;
