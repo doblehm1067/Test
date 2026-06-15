@@ -228,7 +228,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
       const scaffolding = new Scaffolding.Scaffolding();
       scaffolding.width = 480;
       scaffolding.height = 360;
-      scaffolding.resizeMode = "preserve-ratio";
+      scaffolding.resizeMode = "dynamic-resize";
       scaffolding.editableLists = false;
       scaffolding.usePackagedRuntime = true;
       scaffolding.setup();
@@ -256,7 +256,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
       vm.setTurboMode(false);
       if (vm.setInterpolation) vm.setInterpolation(false);
-      if (vm.setFramerate) vm.setFramerate(30);
+      if (vm.setFramerate) vm.setFramerate(60);
       if (vm.renderer.setUseHighQualityRender) vm.renderer.setUseHighQualityRender(false);
       if (vm.setRuntimeOptions) vm.setRuntimeOptions({
         fencing: true,
@@ -370,7 +370,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
       await scaffolding.loadProject(projectData);
       setProgress(1);
       loadingScreen.hidden = true;
-      if (false) {
+      if (true) {
         scaffolding.start();
       } else {
         launchScreen.hidden = false;
